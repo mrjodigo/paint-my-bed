@@ -447,7 +447,7 @@ export default function PaintMyBed() {
 
   return (
     <div style={{
-      height: "100vh", overflow: "hidden",
+      height: "100dvh", overflow: "hidden",
       background: "#f5f0e8",
       backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E\")",
       fontFamily: "'Instrument Serif', Georgia, serif", color: "#2c2c2c",
@@ -456,11 +456,18 @@ export default function PaintMyBed() {
       <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
 
+      <style>{`
+        @media (max-width: 768px) {
+          .pmb-layout { flex-direction: column !important; overflow-y: auto !important; }
+          .pmb-canvas-area { padding: 12px 12px 0 !important; flex: none !important; }
+          .pmb-controls { width: 100% !important; flex-shrink: 1 !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,.06) !important; }
+        }
+      `}</style>
       {/* Main side-by-side layout */}
-      <div style={{ display: "flex", height: "100vh", alignItems: "stretch", overflow: "hidden" }}>
+      <div className="pmb-layout" style={{ display: "flex", height: "100dvh", alignItems: "stretch", overflow: "hidden" }}>
 
         {/* Left: Bed canvas area */}
-        <div style={{ flex: "1 1 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "16px 24px" }}>
+        <div className="pmb-canvas-area" style={{ flex: "1 1 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "16px 24px" }}>
           <div style={{ marginBottom: 8 }}>
             <img src={titleSvg} alt="Paint My Bed" style={{ display: "block", width: "clamp(140px, 18vw, 260px)", margin: "0 auto 4px" }} />
             <img src={mrJodigoSvg} alt="mr.jodigo" style={{ display: "block", width: "clamp(70px, 7vw, 120px)", margin: "10px auto" }} />
@@ -553,7 +560,7 @@ export default function PaintMyBed() {
         </div>
 
         {/* Right: Controls panel */}
-        <div style={{
+        <div className="pmb-controls" style={{
           width: 300, flexShrink: 0, borderLeft: "1px solid rgba(0,0,0,.06)",
           padding: "16px 18px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 14,
           background: "rgba(255,255,255,.25)", backdropFilter: "blur(8px)",
